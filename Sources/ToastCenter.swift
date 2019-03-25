@@ -42,7 +42,7 @@ open class ToastCenter {
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(self.deviceOrientationDidChange),
-      name: .UIDeviceOrientationDidChange,
+      name: UIDevice.orientationDidChangeNotification,
       object: nil
     )
   }

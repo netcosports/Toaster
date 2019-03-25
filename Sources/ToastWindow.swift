@@ -62,7 +62,7 @@ open class ToastWindow: UIWindow {
   public override init(frame: CGRect) {
     super.init(frame: frame)
     self.isUserInteractionEnabled = false
-    self.windowLevel = CGFloat.greatestFiniteMagnitude
+    self.windowLevel = UIWindow.Level(rawValue: CGFloat.greatestFiniteMagnitude)
     self.backgroundColor = .clear
     self.isHidden = false
     self.handleRotate(UIApplication.shared.statusBarOrientation)
@@ -70,25 +70,25 @@ open class ToastWindow: UIWindow {
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(self.bringWindowToTop),
-      name: .UIWindowDidBecomeVisible,
+      name: UIWindow.didBecomeVisibleNotification,
       object: nil
     )
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(self.statusBarOrientationWillChange),
-      name: .UIApplicationWillChangeStatusBarOrientation,
+      name: UIApplication.willChangeStatusBarOrientationNotification,
       object: nil
     )
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(self.statusBarOrientationDidChange),
-      name: .UIApplicationDidChangeStatusBarOrientation,
+      name: UIApplication.didChangeStatusBarOrientationNotification,
       object: nil
     )
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(self.applicationDidBecomeActive),
-      name: .UIApplicationDidBecomeActive,
+      name: UIApplication.didBecomeActiveNotification,
       object: nil
     )
   }
